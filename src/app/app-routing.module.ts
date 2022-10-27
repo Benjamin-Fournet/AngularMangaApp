@@ -1,10 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MangaHomeComponent } from './components/manga-app/manga-home/manga-home.component';
+import { MangasComponent } from './components/manga-app/mangas/mangas.component';
+import { DashboardComponent } from './components/towerHeroes/dashboard/dashboard.component';
+import { HeroDetailComponent } from './components/towerHeroes/hero-detail/hero-detail.component';
+import { HeroesComponent } from './components/towerHeroes/heroes/heroes.component';
+import { TowerHomeComponent } from './components/towerHeroes/tower-home/tower-home.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'manga',
+    component: MangaHomeComponent,
+    children: [
+      { path: '', redirectTo: '/manga/(manga:mangas)', pathMatch: 'full' },
+      { path: 'mangas', outlet: 'manga', component: MangasComponent },
+    ],
+  },
+  {
+    path: 'tower',
+    component: TowerHomeComponent,
+    children: [
+      { path: 'heroes', outlet: 'tower', component: HeroesComponent },
+      { path: 'dashboard', outlet: 'tower', component: DashboardComponent },
+      { path: 'detail/:id', outlet: 'tower', component: HeroDetailComponent },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

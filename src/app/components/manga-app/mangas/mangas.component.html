@@ -1,0 +1,11 @@
+<h2>My Mangas</h2>
+<ul>
+  <li *ngFor="let manga of mangas">
+    <button (click)="onDetailsModalOpen(manga)">
+      <p>{{ manga._id }}</p>
+      <p>{{ manga.title }}</p>
+      <p>{{ manga.description }}</p>
+      <p>{{ manga.rating }}</p>
+    </button>
+  </li>
+</ul>

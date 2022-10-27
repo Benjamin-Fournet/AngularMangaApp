@@ -1,0 +1,34 @@
+<ng-container *ngIf="manga">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">{{ manga.title }}</h2>
+      <div>
+        <fa-icon icon="trash" class="mx-3" size="lg" (click)="deleteItem(manga)"></fa-icon>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="cancel()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div>
+        <p>{{ manga.description }}</p>
+        <p>{{ manga.rating }}</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+        (click)="cancel()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</ng-container>
