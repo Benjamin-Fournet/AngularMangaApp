@@ -3,7 +3,20 @@
     <div class="modal-header">
       <h2 class="modal-title">{{ manga.title }}</h2>
       <div>
-        <fa-icon icon="trash" class="mx-3" size="lg" (click)="deleteItem(manga)"></fa-icon>
+        <fa-icon
+          icon="pen"
+          class="mx-2"
+          size="lg"
+          (click)="isUpdating = !isUpdating"
+          role="button"
+        ></fa-icon>
+        <fa-icon
+          icon="trash"
+          class="mx-2"
+          size="lg"
+          (click)="deleteItem(manga)"
+          role="button"
+        ></fa-icon>
         <button
           type="button"
           class="close"
@@ -15,20 +28,61 @@
       </div>
     </div>
     <div class="modal-body">
-      <div>
+      <ng-container *ngIf="isUpdating; else mangaDetails">
+        <form [formGroup]="updateMangaForm">
+          <label for="manga-description">Manga's description: </label>
+          <input
+            id="manga-description"
+            type="text"
+            formControlName="description"
+            [placeholder]="manga.description"
+          />
+          <label for="manga-rating">Manga's rating: </label>
+          <input
+            id="manga-rating"
+            type="number"
+            min="0"
+            max="10"
+            formControlName="rating"
+            [placeholder]="manga.rating"
+          />
+        </form>
+      </ng-container>
+      <ng-template #mangaDetails>
         <p>{{ manga.description }}</p>
         <p>{{ manga.rating }}</p>
-      </div>
+      </ng-template>
     </div>
     <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-secondary"
-        data-dismiss="modal"
-        (click)="cancel()"
-      >
-        Close
-      </button>
+      <div *ngIf="this.isUpdating; else closeButton">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="isUpdating = false"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-dismiss="modal"
+          [disabled]="!updateMangaForm.valid"
+          (click)="updateItem()"
+        >
+          Update
+        </button>
+      </div>
+      <ng-template #closeButton>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="cancel()"
+        >
+          Close
+        </button>
+      </ng-template>
     </div>
   </div>
 </ng-container>

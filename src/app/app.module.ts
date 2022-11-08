@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
@@ -23,6 +23,7 @@ import { TowerHomeComponent } from './components/towerHeroes/tower-home/tower-ho
 import { MangaHomeComponent } from './components/manga-app/manga-home/manga-home.component';
 import { fontAwesomeIcons } from './config/font-awesome-icons';
 import { ToastDialogComponent } from './components/global/toast-dialog/toast-dialog.component';
+import { AddMangaComponent } from './components/manga-app/add-manga/add-manga.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ToastDialogComponent } from './components/global/toast-dialog/toast-dia
     TowerHomeComponent,
     MangaHomeComponent,
     ToastDialogComponent,
+    AddMangaComponent,
   ],
   imports: [
     NgbModule,
@@ -43,6 +45,7 @@ import { ToastDialogComponent } from './components/global/toast-dialog/toast-dia
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

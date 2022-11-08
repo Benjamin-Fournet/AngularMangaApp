@@ -5,10 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './manga-home.component.html',
   styleUrls: ['./manga-home.component.css'],
 })
-export class MangaHomeComponent implements OnInit {
+export class MangaHomeComponent{
   mangaAppTitle = 'Manga Application: ';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

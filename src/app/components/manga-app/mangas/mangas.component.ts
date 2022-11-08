@@ -35,16 +35,22 @@ export class MangasComponent implements OnInit {
       size: 'lg',
       backdrop: 'static',
     });
-    modalRef.componentInstance.manga = manga;
+    modalRef.componentInstance.mangaId = manga._id;
 
     modalRef.componentInstance.delete.subscribe((message: string) => {
       this.getMangas();
-      setTimeout(() => {
-        this.toastService.show(message, {
-          classname: 'bg-success text-light',
-          delay: 5000,
-        });
-      }, 200);
+      this.toastService.show(message, {
+        classname: 'bg-success text-light',
+        delay: 5000,
+      });
+    });
+
+    modalRef.componentInstance.update.subscribe((message: string) => {
+      this.getMangas();
+      this.toastService.show(message, {
+        classname: 'bg-success text-light',
+        delay: 5000,
+      });
     });
   }
 }

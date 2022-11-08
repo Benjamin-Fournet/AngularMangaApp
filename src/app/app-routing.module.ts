@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddMangaComponent } from './components/manga-app/add-manga/add-manga.component';
 import { MangaHomeComponent } from './components/manga-app/manga-home/manga-home.component';
 import { MangasComponent } from './components/manga-app/mangas/mangas.component';
 import { DashboardComponent } from './components/towerHeroes/dashboard/dashboard.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/manga/(manga:mangas)', pathMatch: 'full' },
       { path: 'mangas', outlet: 'manga', component: MangasComponent },
+      { path: 'add', outlet: 'manga', component: AddMangaComponent },
     ],
   },
   {

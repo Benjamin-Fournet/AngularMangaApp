@@ -1,4 +1,6 @@
 <h2>My Mangas</h2>
+<a routerLink="../add">Add new Manga</a>
+
 <ul>
   <li *ngFor="let manga of mangas">
     <button (click)="onDetailsModalOpen(manga)">

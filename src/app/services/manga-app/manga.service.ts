@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Manga } from 'src/app/models/manga-app/manga';
+import {
+  DTOManga,
+  Manga,
+  mapToUpdateObject,
+} from 'src/app/models/manga-app/manga';
 import { MessageService } from '../tower-heroes/message.service';
 
 @Injectable({
@@ -23,9 +27,22 @@ export class MangaService {
     return this.http.get<Manga[]>(this.mangaApiUrl + 'getAll');
   }
 
+  getMangaById(id: string): Observable<Manga> {
+    return this.http.get<Manga>(this.mangaApiUrl + 'getOne/' + id);
+  }
+
   deleteManga(id: string): Observable<string> {
-    let msg = this.http.delete<string>(this.mangaApiUrl + 'delete/' + id);
-    console.log(msg);
-    return msg;
+    return this.http.delete<string>(this.mangaApiUrl + 'delete/' + id);
+  }
+
+  updateManga(manga: Manga): Observable<Manga> {
+    return this.http.patch<Manga>(
+      this.mangaApiUrl + 'update/' + manga._id,
+      mapToUpdateObject(manga)
+    );
+  }
+
+  addManga(manga: DTOManga): Observable<Manga> {
+    return this.http.post<Manga>(this.mangaApiUrl + 'create', manga);
   }
 }

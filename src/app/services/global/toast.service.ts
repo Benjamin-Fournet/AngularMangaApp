@@ -7,8 +7,9 @@ export class ToastService {
   toasts: any[] = [];
 
   show(message: string, options: any = {}) {
-    this.toasts.push({ message, ...options });
-    console.log(this.toasts);
+    setTimeout(() => {
+      this.toasts.push({ message, ...options });
+    }, 500);
   }
 
   remove(toast: any) {
